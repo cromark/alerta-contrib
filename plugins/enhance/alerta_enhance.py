@@ -25,6 +25,9 @@ class EnhanceAlert(PluginBase):
         # Add link to Run Book based on event name
         alert.attributes['runBookUrl'] = '%s/%s' % (RUNBOOK_URL, alert.event.replace(' ', '-'))
 
+        alert.attributes['owner'] = 'cromark'
+        alert.attributes['customer'] = 'cromark'
+
         return alert
 
     def post_receive(self, alert):
