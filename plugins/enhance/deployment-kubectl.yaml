@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kubectl
+  name: kubectl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubectl
+  template:
+    metadata:
+      labels:
+        app: kubectl
+    spec:
+      serviceAccountName: alerta
+      automountServiceAccountToken: true
+      containers:
+      - image: bitnami/kubectl:1.17
+        name: kubectl
+        command:
+        - sh
+        - -c
+        - while :; do echo 'Hit CTRL+C'; sleep 360; done
+        resources: {}

@@ -12,9 +12,6 @@ class NormaliseAlert(PluginBase):
 
         LOG.info("Normalising alert...")
 
-        if alert.severity.lower() == 'info'
-            alert.severity = 'informational'
-
         # prepend severity to alert text
         alert.text = '%s: %s' % (alert.severity.upper(), alert.text)
 

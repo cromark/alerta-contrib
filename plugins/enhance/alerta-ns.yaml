@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: alerta
+  namespace: alerta
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: alerta
+rules:
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["list","get"]
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: alerta
+subjects:
+- kind: ServiceAccount
+  name: alerta
+  namespace: alerta
+roleRef:
+  kind: ClusterRole
+  name: alerta
+  apiGroup: rbac.authorization.k8s.io

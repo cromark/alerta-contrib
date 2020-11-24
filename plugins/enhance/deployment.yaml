@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: python
+  name: python
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      serviceAccountName: alerta
+      automountServiceAccountToken: true
+      containers:
+      - image: python:rc-alpine
+        name: python
+        command:
+        - sh
+        - -c
+        - while :; do echo 'Hit CTRL+C'; sleep 360; done
+        resources: {}
